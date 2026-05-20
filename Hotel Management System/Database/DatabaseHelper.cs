@@ -89,6 +89,8 @@ namespace Hotel_Management_System.Database
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
                         if (count == 0)
                         {
+                            // Hash the password using BCrypt before storing
+                            // BCrypt is a one-way hash — original password cannot be recovered
                             string hashedPassword = BCrypt.Net.BCrypt.HashPassword("1234");
                             string insertAdmin = $"INSERT INTO Users (Username, Password) VALUES ('admin', '{hashedPassword}')";
                             using (SQLiteCommand insertCmd = new SQLiteCommand(insertAdmin, conn))

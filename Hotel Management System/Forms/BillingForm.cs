@@ -64,6 +64,8 @@ namespace Hotel_Management_System.Forms
             // Calculate nights stayed
             DateTime checkIn = DateTime.Parse(booking.CheckIn);
             DateTime checkOut = DateTime.Parse(booking.CheckOut);
+            // Calculate total bill: number of nights × price per night
+            // Minimum 1 night is charged even for same-day checkout
             int nights = (checkOut - checkIn).Days;
             if (nights < 1) nights = 1;
 
