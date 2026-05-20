@@ -11,6 +11,10 @@ namespace Hotel_Management_System
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
+        /// <summary>
+        /// Application entry point.
+        /// Initializes database tables on startup, then launches LoginForm.
+        /// </summary>
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,

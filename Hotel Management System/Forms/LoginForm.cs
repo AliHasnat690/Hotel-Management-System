@@ -23,13 +23,16 @@ namespace Hotel_Management_System.Forms
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
 
+            // Validate that fields are not empty before attempting login
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please enter username and password!", "Warning",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            // Call UserRepository to verify credentials against database
+            // LoginForm has no SQL — all database logic is in UserRepository
             // UserRepository handles the database query — not the form!
             if (UserRepository.ValidateLogin(username, password))
             {
