@@ -29,7 +29,7 @@ namespace Hotel_Management_System.Database
                                    JOIN Bookings bk ON bl.BookingId = bk.Id
                                    JOIN Guests   g  ON bk.GuestId  = g.Id
                                    JOIN Rooms    r  ON bk.RoomId   = r.Id
-                                   WHERE g.Name LIKE @search
+                                   WHERE g.Name LIKE @search 
                                    ORDER BY bl.Id DESC";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
