@@ -1,0 +1,43 @@
+-- Hotel Management System Database Script
+-- Run this to recreate the database structure
+
+CREATE TABLE IF NOT EXISTS Users (
+    Id       INTEGER PRIMARY KEY AUTOINCREMENT,
+    Username TEXT NOT NULL UNIQUE,
+    Password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Rooms (
+    Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    RoomNumber TEXT NOT NULL UNIQUE,
+    Type       TEXT NOT NULL,
+    Price      REAL NOT NULL DEFAULT 0,
+    Status     TEXT NOT NULL DEFAULT 'Available'
+);
+
+CREATE TABLE IF NOT EXISTS Guests (
+    Id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name    TEXT NOT NULL,
+    Contact TEXT,
+    CNIC    TEXT,
+    Address TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Bookings (
+    Id       INTEGER PRIMARY KEY AUTOINCREMENT,
+    GuestId  INTEGER NOT NULL,
+    RoomId   INTEGER NOT NULL,
+    CheckIn  TEXT NOT NULL,
+    CheckOut TEXT NOT NULL,
+    Status   TEXT NOT NULL DEFAULT 'Active',
+    FOREIGN KEY (GuestId) REFERENCES Guests(Id),
+    FOREIGN KEY (RoomId)  REFERENCES Rooms(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Bills (
+    Id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    BookingId INTEGER NOT NULL,
+    Total     REAL NOT NULL DEFAULT 0,
+    Date      TEXT NOT NULL,
+    FOREIGN KEY (BookingId) REFERENCES Bookings(Id)
+);
